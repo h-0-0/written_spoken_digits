@@ -218,7 +218,7 @@ def get_AudioMNIST(root='data', viz=True, cleanup=True, ) -> Tuple[torch.utils.d
         - test_dataset (torch.utils.data.Dataset): The test dataset
 
     """
-    np.random.seed(42)
+    # np.random.seed(42) # Used this seed to generate train/test split indices
     # Check if np files exist and load them if they do
     if os.path.exists(os.path.join(root,'mnist_audio_data.npy')) and os.path.exists(os.path.join(root,'mnist_audio_labels.npy')):
         audio_data = np.load(os.path.join(root,'mnist_audio_data.npy'))
@@ -227,9 +227,10 @@ def get_AudioMNIST(root='data', viz=True, cleanup=True, ) -> Tuple[torch.utils.d
         download_AudioMNIST(root=root, viz=viz, cleanup=cleanup)
         audio_data = np.load(os.path.join(root,'mnist_audio_data.npy'))
         audio_labels = np.load(os.path.join(root,'mnist_audio_labels.npy'))
-    # Get random indices for shuffling the data and save the indices for reproducibility
-    indices = np.random.permutation(audio_data.shape[0])
-    np.save(os.path.join(root,'train_test_split_indices'), indices, allow_pickle =False)
+    # Get indices for shuffling the data
+    # indices = np.random.permutation(audio_data.shape[0]) #Used to generate the indices for test/train split
+    # np.save(os.path.join(root,'train_test_split_indices'), indices, allow_pickle =False) #Used to generate the indices for test/train split
+    indices = np.load('train_test_split_indices.npy')
     # Split the data into train and test sets
     train_indices = indices[:30000-4000]
     test_indices = indices[30000-4000:]

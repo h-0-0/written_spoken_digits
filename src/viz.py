@@ -13,7 +13,7 @@ if __name__ == '__main__':
     parser.add_argument('--root', type=str, default='viz', help='The root directory to save the data')
     args = parser.parse_args()
     root = args.root
-    print("------ Find visualisations in the {root} directory ------")
+    print(f"------ Find visualisations in the {root} directory ------")
     n_b = 4
     train_loader, test_loader = get_torch_data_loaders(4)
     image_batch, audio_batch, label_batch = next(iter(train_loader))
