@@ -1,0 +1,10 @@
+numpy
+librosa
+
+
+# If using get_AudioMNIST_as_tensor, get_ImageMNIST_as_tensor, get_torch_data_loaders
+torch
+torchvision
+
+# If using anything in viz.py
+matplotlib
